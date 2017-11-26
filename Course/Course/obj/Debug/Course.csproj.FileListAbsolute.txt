@@ -16,4 +16,5 @@ C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.C
 C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Showing.resources
 C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Data.resources
 C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Report.resources
-C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.csproj.ResolveComReference.cache
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\DocumentFormat.OpenXml.xml

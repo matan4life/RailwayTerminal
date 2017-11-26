@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Word = Microsoft.Office.Interop.Word;
+using System.IO;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Text.RegularExpressions;
 
 namespace Course
 {
     public partial class Report : Form
     {
-        public string tmp = "report.docx";
         public Report()
         {
             InitializeComponent();
@@ -21,27 +24,52 @@ namespace Course
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var wordApp = new Word.Application();
-            wordApp.Visible = false;
-            var wordDocument = wordApp.Documents.Open(tmp);
-            ReplaceWordStuff("{date}", "4", wordDocument);
-            ReplaceWordStuff("{year}", "2017", wordDocument);
-            ReplaceWordStuff("{month1}", "октябрь", wordDocument);
-            ReplaceWordStuff("{month2}", "ноябрь", wordDocument);
-            ReplaceWordStuff("{month3}", "декабрь", wordDocument);
-            ReplaceWordStuff("{number1}", "1000", wordDocument);
-            ReplaceWordStuff("{number2}", "2000", wordDocument);
-            ReplaceWordStuff("{number3}", "3000", wordDocument);
-            ReplaceWordStuff("{totalnumber}", "6000", wordDocument);
-            wordDocument.SaveAs("result.docx");
-            wordApp.Visible = true;
+            string tmp = "report.docx";
+            SearchAndReplace(tmp);
         }
-        private void ReplaceWordStuff(string stub, string text, Word.Document wordDocument)
+        public static void SearchAndReplace(string document)
         {
-            var range = wordDocument.Content;
-            range.Find.ClearFormatting();
-            range.Find.Execute(FindText: stub, ReplaceWith: text);
-        }
+            string tmp = "report.docx";
+            string docText = null;
+            Regex regexText = new Regex("");
+            using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(document, true))
+            {
+                using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+                {
+                    docText = sr.ReadToEnd();
+                }
 
+                regexText = new Regex("{month1}");
+                docText = regexText.Replace(docText, "октябрь");
+                regexText = new Regex("{number1}");
+                docText = regexText.Replace(docText, "1000");
+                regexText = new Regex("{month2}");
+                docText = regexText.Replace(docText, "ноябрь");
+                regexText = new Regex("{month3}");
+                docText = regexText.Replace(docText, "декабрь");
+                regexText = new Regex("{number2}");
+                docText = regexText.Replace(docText, "2000");
+                regexText = new Regex("{year}");
+                docText = regexText.Replace(docText, "2017");
+                regexText = new Regex("{number3}");
+                docText = regexText.Replace(docText, "3000");
+                regexText = new Regex("{total}");
+                docText = regexText.Replace(docText, "6000");
+                regexText = new Regex("{quarter}");
+                docText = regexText.Replace(docText, "4");
+            }
+            if (File.Exists("result.docx"))
+            {
+                File.Delete("result.docx");
+            }
+            File.Copy(tmp, "result.docx");
+            using (WordprocessingDocument wordDoc= WordprocessingDocument.Open("result.docx", true))
+            { 
+                using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
+                {
+                    sw.Write(docText);
+                }
+            }
+        }
     }
 }
