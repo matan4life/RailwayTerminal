@@ -1,0 +1,16 @@
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\Course.exe.config
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\Course.exe
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\Course.pdb
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.csprojResolveAssemblyReference.cache
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Form1.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Properties.Resources.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.csproj.GenerateResource.Cache
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.csproj.CoreCompileInputs.cache
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.exe
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.pdb
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Admin.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Enter.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\LAP.mdf
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\LAP_log.ldf
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Change.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Showing.resources
