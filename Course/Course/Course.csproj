@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -71,6 +74,12 @@
     </Compile>
     <Compile Include="Change.Designer.cs">
       <DependentUpon>Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Data.Designer.cs">
+      <DependentUpon>Data.cs</DependentUpon>
     </Compile>
     <Compile Include="Enter.cs">
       <SubType>Form</SubType>
@@ -106,6 +115,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RailroadDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Showing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Change.resx">
       <DependentUpon>Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data.resx">
+      <DependentUpon>Data.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Enter.resx">
       <DependentUpon>Enter.cs</DependentUpon>
@@ -134,6 +152,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Showing.resx">
       <DependentUpon>Showing.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,6 +244,20 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

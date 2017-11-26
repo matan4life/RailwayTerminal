@@ -19,11 +19,19 @@ namespace Course
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
-            {
                 var ch = new Change();
                 ch.ShowDialog();
-            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var report = new Report();
+            report.ShowDialog();
         }
     }
 

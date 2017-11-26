@@ -14,3 +14,6 @@ C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\LAP.mdf
 C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\bin\Debug\LAP_log.ldf
 C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Change.resources
 C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Showing.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Data.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.Report.resources
+C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\obj\Debug\Course.csproj.ResolveComReference.cache
