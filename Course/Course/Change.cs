@@ -15,12 +15,47 @@ namespace Course
     {
         public int CurrentValue = 0;
         public List<DataGridViewRow> Rows = new List<DataGridViewRow>();
-        public string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\GIGABYTE\Desktop\БД_курсовик\Course\Course\Railroad.mdf;Integrated Security=True";
+        public string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\RailwayTerminal-temp-1.2\Course\Course\Railroad.mdf;Integrated Security=True";
         public Change()
         {
             InitializeComponent();
         }
+        private void FillEngine(string commandsql)
+        {
+            while (dataGridView2.Rows.Count != 1)
+            {
+                dataGridView2.Rows.RemoveAt(0);
+            }
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                string sql = commandsql;
+                SqlCommand command = new SqlCommand(sql, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                int counter = 0;
+                while (reader.Read())
+                {
+                    //dataGridView1.Rows[counter].Cells[0].Value = reader.GetInt32(0).ToString();
+                    //dataGridView1.Rows[counter].Cells[1].Value = reader.GetString(1);
+                    //dataGridView1.Rows[counter].Cells[2].Value = reader.GetString(2);
+                    //dataGridView1.Rows[counter].Cells[3].Value = reader.GetInt32(3).ToString();
+                    dataGridView2.Rows.Add();
+                    dataGridView2.Height += dataGridView2.RowTemplate.Height;
 
+                }
+                reader.Close();
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    dataGridView2.Rows[counter].Cells[0].Value = reader.GetInt32(0).ToString();
+                    dataGridView2.Rows[counter].Cells[1].Value = reader.GetString(1);
+                    dataGridView2.Rows[counter].Cells[2].Value = reader.GetString(2);
+                    dataGridView2.Rows[counter].Cells[3].Value = reader.GetInt32(3).ToString();
+                    counter++;
+                }
+                connection.Close();
+            }
+        }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
@@ -238,6 +273,18 @@ namespace Course
                 textBox8.Visible = true;
                 textBox9.Visible = true;
                 button6.Visible = true;
+                using (SqlConnection connection=new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    string sql = "SELECT StationName FROM Station";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        listBox5.Items.Add(reader.GetString(0));
+                    }
+                    connection.Close();
+                }
             }
             else
             {
@@ -284,18 +331,6 @@ namespace Course
             {
                 dataGridView1.Rows.RemoveAt(0);
             }
-            checkBox1.Top = 386;
-            comboBox1.Top = 382;
-            checkBox2.Top = 421;
-            checkBox3.Top = 456;
-            checkBox4.Top = 491;
-            numericUpDown9.Top = 479;
-            comboBox2.Top = 417;
-            comboBox3.Top = 452;
-            numericUpDown8.Top = 444;
-            dataGridView1.Height = 58;
-            button9.Top = 339;
-            button10.Top = 339;
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
@@ -311,18 +346,7 @@ namespace Course
                     //dataGridView1.Rows[counter].Cells[3].Value = reader.GetInt32(3).ToString();
                     dataGridView1.Rows.Add();
                     dataGridView1.Height += dataGridView1.RowTemplate.Height;
-                    button9.Top += dataGridView1.RowTemplate.Height;
-                    button10.Top += dataGridView1.RowTemplate.Height;
-                    checkBox1.Top += dataGridView1.RowTemplate.Height;
-                    comboBox1.Top += dataGridView1.RowTemplate.Height;
-                    checkBox2.Top += dataGridView1.RowTemplate.Height;
-                    checkBox3.Top += dataGridView1.RowTemplate.Height;
-                    comboBox2.Top += dataGridView1.RowTemplate.Height;
-                    comboBox3.Top += dataGridView1.RowTemplate.Height;
-                    numericUpDown8.Top += dataGridView1.RowTemplate.Height;
-                    checkBox4.Top += dataGridView1.RowTemplate.Height;
-                    numericUpDown9.Top += dataGridView1.RowTemplate.Height;
-                    //counter++;
+                   
                 }
                 reader.Close();
                 reader = command.ExecuteReader();
@@ -341,8 +365,11 @@ namespace Course
         {
             if (radioButton3.Checked)
             {
+                FillEngine("SELECT e.EngineId, e.Type, em.Type, em.Propulsion FROM Engine e, EngineModels em WHERE e.Type=em.Name");
                 FillDGV("SELECT c.CarId, cm.Name, cm.Type, cm.NumberOfPlaces FROM Carriage c, CarriageModels cm WHERE c.Type=cm.Name");
+                MessageBox.Show(dataGridView2.Rows[0].Cells[3].Value.ToString());
                 Generate_Train();
+                dataGridView2.Visible = true;
                 numericUpDown10.Visible = true;
                 listBox6.Visible = true;
                 listBox7.Visible = true;
@@ -367,6 +394,7 @@ namespace Course
                 listBox7.Visible = false;
                 button7.Visible = false;
                 button8.Visible = false;
+                dataGridView2.Visible = false;
                 dataGridView1.Visible = false;
                 button9.Visible = false;
                 button10.Visible = false;
@@ -441,7 +469,7 @@ namespace Course
                         MessageBox.Show("Выберите арифметическую операцию для фильтра!");
                         return;
                     }
-                    sqlcommand += "AND cm.NumberOfPlaces" + sign + numericUpDown8.Value.ToString();
+                    sqlcommand += " AND cm.NumberOfPlaces" + sign + numericUpDown8.Value.ToString();
                 }
                 FillDGV(sqlcommand);
             }
@@ -603,6 +631,51 @@ namespace Course
                 connection.Close();
             }
             carriageTableAdapter.UpdateQuery(Convert.ToInt32(listBox7.SelectedItem), Convert.ToInt32(numericUpDown10.Value), c + 1, type, Convert.ToInt32(listBox7.SelectedItem));
+        }
+    private bool IsSorted(DataGridViewColumn dgv)
+    {
+        if (Convert.ToInt32(dgv.DataGridView.Rows[0].Cells[dgv.Index].Value)< Convert.ToInt32(dgv.DataGridView.Rows[1].Cells[dgv.Index].Value))
+        {
+            return true;
+        }
+        return false;
+    }
+        private void dataGridView2_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                dataGridView2.Columns[0].SortMode = DataGridViewColumnSortMode.Programmatic;
+                if (!IsSorted(dataGridView2.Columns[0]))
+                {
+                    FillEngine("SELECT e.EngineId, e.Type, em.Type, em.Propulsion FROM Engine e, EngineModels em WHERE e.Type=em.Name ORDER BY e.EngineId");
+                }
+                else
+                {
+                    FillEngine("SELECT e.EngineId, e.Type, em.Type, em.Propulsion FROM Engine e, EngineModels em WHERE e.Type=em.Name ORDER BY e.EngineId DESC");
+                }
+            }
+            else if (e.ColumnIndex == 3)
+            {
+                dataGridView2.Columns[3].SortMode = DataGridViewColumnSortMode.Programmatic;
+                if (!IsSorted(dataGridView2.Columns[3]))
+                {
+                    FillEngine("SELECT e.EngineId, e.Type, em.Type, em.Propulsion FROM Engine e, EngineModels em WHERE e.Type=em.Name ORDER BY em.Propulsion");
+                }
+                else
+                {
+                    FillEngine("SELECT e.EngineId, e.Type, em.Type, em.Propulsion FROM Engine e, EngineModels em WHERE e.Type=em.Name ORDER BY em.Propulsion DESC");
+                }
+            }
+        }
+
+        private void Change_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            carriageTableAdapter.Update(railroadDataSet2);
+            placeTableAdapter.Update(railroadDataSet2);
+            carriageModelsTableAdapter.Update(railroadDataSet2);
+            engineTableAdapter.Update(railroadDataSet2);
+            engineModelsTableAdapter.Update(railroadDataSet2);
+            terminalTableAdapter.Update(railroadDataSet2);
         }
     }
 }

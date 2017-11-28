@@ -46,7 +46,7 @@
             this.выходToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1350, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1358, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -56,20 +56,20 @@
             this.расписаниеПоездовToolStripMenuItem,
             this.оплатаБилетовOnlineToolStripMenuItem});
             this.пассажирамToolStripMenuItem.Name = "пассажирамToolStripMenuItem";
-            this.пассажирамToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.пассажирамToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.пассажирамToolStripMenuItem.Text = "Пассажирам";
             // 
             // расписаниеПоездовToolStripMenuItem
             // 
             this.расписаниеПоездовToolStripMenuItem.Name = "расписаниеПоездовToolStripMenuItem";
-            this.расписаниеПоездовToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.расписаниеПоездовToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.расписаниеПоездовToolStripMenuItem.Text = "Расписание поездов";
             this.расписаниеПоездовToolStripMenuItem.Click += new System.EventHandler(this.расписаниеПоездовToolStripMenuItem_Click);
             // 
             // оплатаБилетовOnlineToolStripMenuItem
             // 
             this.оплатаБилетовOnlineToolStripMenuItem.Name = "оплатаБилетовOnlineToolStripMenuItem";
-            this.оплатаБилетовOnlineToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.оплатаБилетовOnlineToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.оплатаБилетовOnlineToolStripMenuItem.Text = "Оплата билетов Online";
             // 
             // администраторамToolStripMenuItem
@@ -77,7 +77,7 @@
             this.администраторамToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.входToolStripMenuItem});
             this.администраторамToolStripMenuItem.Name = "администраторамToolStripMenuItem";
-            this.администраторамToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
+            this.администраторамToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
             this.администраторамToolStripMenuItem.Text = "Администраторам";
             // 
             // входToolStripMenuItem
@@ -90,14 +90,14 @@
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.выходToolStripMenuItem.Text = "Выход";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1358, 741);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";

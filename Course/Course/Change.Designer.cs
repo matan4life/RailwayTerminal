@@ -45,6 +45,8 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.carriageModelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.railroadDataSet21 = new Course.RailroadDataSet2();
             this.carriageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.trainBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -82,8 +84,6 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -95,8 +95,6 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.railroadDataSet21 = new Course.RailroadDataSet2();
             this.railroadDataSet2 = new Course.RailroadDataSet2();
             this.carriageModelsTableAdapter = new Course.RailroadDataSet2TableAdapters.CarriageModelsTableAdapter();
             this.carriageTableAdapter = new Course.RailroadDataSet2TableAdapters.CarriageTableAdapter();
@@ -106,9 +104,20 @@
             this.stationTableAdapter = new Course.RailroadDataSet2TableAdapters.StationTableAdapter();
             this.terminalTableAdapter = new Course.RailroadDataSet2TableAdapters.TerminalTableAdapter();
             this.trainTableAdapter = new Course.RailroadDataSet2TableAdapters.TrainTableAdapter();
+            this.engineBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tableAdapterManager = new Course.RailroadDataSet2TableAdapters.TableAdapterManager();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carriageModelsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.railroadDataSet21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carriageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainBindingSource)).BeginInit();
@@ -127,9 +136,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.railroadDataSet21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.railroadDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.engineBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // radioButton1
@@ -340,6 +349,16 @@
             // 
             this.carriageModelsBindingSource.DataMember = "CarriageModels";
             this.carriageModelsBindingSource.DataSource = this.bindingSource1;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = this.railroadDataSet21;
+            this.bindingSource1.Position = 0;
+            // 
+            // railroadDataSet21
+            // 
+            this.railroadDataSet21.DataSetName = "RailroadDataSet2";
+            this.railroadDataSet21.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // carriageBindingSource
             // 
@@ -683,7 +702,7 @@
             this.button7.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button7.Location = new System.Drawing.Point(558, 371);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(269, 34);
+            this.button7.Size = new System.Drawing.Size(269, 35);
             this.button7.TabIndex = 37;
             this.button7.Text = "Добавить вагон к составу";
             this.button7.UseVisualStyleBackColor = true;
@@ -695,7 +714,7 @@
             this.button8.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button8.Location = new System.Drawing.Point(558, 411);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(269, 34);
+            this.button8.Size = new System.Drawing.Size(269, 35);
             this.button8.TabIndex = 38;
             this.button8.Text = "Сформировать состав";
             this.button8.UseVisualStyleBackColor = true;
@@ -712,7 +731,7 @@
             this.Column4});
             this.dataGridView1.Location = new System.Drawing.Point(861, 275);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 58);
+            this.dataGridView1.Size = new System.Drawing.Size(444, 59);
             this.dataGridView1.TabIndex = 39;
             this.dataGridView1.Visible = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -741,35 +760,11 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Image = global::Course.Properties.Resources.icons8_conversion_64;
-            this.button10.Location = new System.Drawing.Point(1241, 339);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(64, 64);
-            this.button10.TabIndex = 41;
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Visible = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button9.Image = global::Course.Properties.Resources.icons8_Поиск_48;
-            this.button9.Location = new System.Drawing.Point(861, 339);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(64, 64);
-            this.button9.TabIndex = 40;
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Visible = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.CausesValidation = false;
-            this.checkBox1.Location = new System.Drawing.Point(947, 386);
+            this.checkBox1.Location = new System.Drawing.Point(931, 143);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(170, 17);
             this.checkBox1.TabIndex = 42;
@@ -789,7 +784,7 @@
             "Сидячий 2 класса",
             "Интерсити 1 класса",
             "Интерсити 2 класса"});
-            this.comboBox1.Location = new System.Drawing.Point(1114, 381);
+            this.comboBox1.Location = new System.Drawing.Point(1098, 346);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 43;
@@ -798,7 +793,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(947, 421);
+            this.checkBox2.Location = new System.Drawing.Point(931, 178);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(186, 17);
             this.checkBox2.TabIndex = 44;
@@ -811,7 +806,7 @@
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1129, 417);
+            this.comboBox2.Location = new System.Drawing.Point(1113, 174);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 45;
@@ -827,7 +822,7 @@
             "Равно",
             "Больше или равно",
             "Больше"});
-            this.comboBox3.Location = new System.Drawing.Point(1164, 452);
+            this.comboBox3.Location = new System.Drawing.Point(1148, 209);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 47;
@@ -836,7 +831,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(947, 456);
+            this.checkBox3.Location = new System.Drawing.Point(931, 213);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(208, 17);
             this.checkBox3.TabIndex = 46;
@@ -848,7 +843,7 @@
             // numericUpDown8
             // 
             this.numericUpDown8.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown8.Location = new System.Drawing.Point(1291, 444);
+            this.numericUpDown8.Location = new System.Drawing.Point(1275, 201);
             this.numericUpDown8.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -876,7 +871,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(947, 491);
+            this.checkBox4.Location = new System.Drawing.Point(931, 236);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(88, 17);
             this.checkBox4.TabIndex = 49;
@@ -887,7 +882,7 @@
             // numericUpDown9
             // 
             this.numericUpDown9.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown9.Location = new System.Drawing.Point(1041, 479);
+            this.numericUpDown9.Location = new System.Drawing.Point(1025, 236);
             this.numericUpDown9.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -912,6 +907,11 @@
             // 
             this.numericUpDown10.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.numericUpDown10.Location = new System.Drawing.Point(558, 272);
+            this.numericUpDown10.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numericUpDown10.Minimum = new decimal(new int[] {
             1,
             0,
@@ -926,16 +926,6 @@
             0,
             0});
             this.numericUpDown10.Visible = false;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = this.railroadDataSet21;
-            this.bindingSource1.Position = 0;
-            // 
-            // railroadDataSet21
-            // 
-            this.railroadDataSet21.DataSetName = "RailroadDataSet2";
-            this.railroadDataSet21.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // railroadDataSet2
             // 
@@ -974,11 +964,95 @@
             // 
             this.trainTableAdapter.ClearBeforeFill = true;
             // 
+            // engineBindingSource1
+            // 
+            this.engineBindingSource1.DataMember = "Engine";
+            this.engineBindingSource1.DataSource = this.railroadDataSet2;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CarriageModelsTableAdapter = this.carriageModelsTableAdapter;
+            this.tableAdapterManager.CarriageTableAdapter = this.carriageTableAdapter;
+            this.tableAdapterManager.EngineModelsTableAdapter = this.engineModelsTableAdapter;
+            this.tableAdapterManager.EngineTableAdapter = this.engineTableAdapter;
+            this.tableAdapterManager.PlaceTableAdapter = this.placeTableAdapter;
+            this.tableAdapterManager.StationTableAdapter = this.stationTableAdapter;
+            this.tableAdapterManager.TerminalTableAdapter = this.terminalTableAdapter;
+            this.tableAdapterManager.TicketTableAdapter = null;
+            this.tableAdapterManager.TrainStationsTableAdapter = null;
+            this.tableAdapterManager.TrainTableAdapter = this.trainTableAdapter;
+            this.tableAdapterManager.UpdateOrder = Course.RailroadDataSet2TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            this.dataGridView2.Location = new System.Drawing.Point(100, 60);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(443, 55);
+            this.dataGridView2.TabIndex = 52;
+            this.dataGridView2.Visible = false;
+            this.dataGridView2.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_ColumnHeaderMouseClick);
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Id локомотива";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Модель";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Тип";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Тяга";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.Image = global::Course.Properties.Resources.icons8_conversion_64;
+            this.button10.Location = new System.Drawing.Point(1241, 131);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(64, 64);
+            this.button10.TabIndex = 41;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Visible = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button9.Image = global::Course.Properties.Resources.icons8_Поиск_48;
+            this.button9.Location = new System.Drawing.Point(861, 131);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(64, 65);
+            this.button9.TabIndex = 40;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Visible = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Change
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.numericUpDown10);
             this.Controls.Add(this.numericUpDown9);
             this.Controls.Add(this.checkBox4);
@@ -1033,10 +1107,13 @@
             this.Controls.Add(this.radioButton1);
             this.Name = "Change";
             this.Text = "Change";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Change_FormClosing_1);
             this.Load += new System.EventHandler(this.Change_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.carriageModelsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.railroadDataSet21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.carriageBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainBindingSource)).EndInit();
@@ -1055,9 +1132,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.railroadDataSet21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.railroadDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.engineBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1142,5 +1219,12 @@
         private System.Windows.Forms.NumericUpDown numericUpDown9;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.NumericUpDown numericUpDown10;
+        private System.Windows.Forms.BindingSource engineBindingSource1;
+        private RailroadDataSet2TableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
     }
 }
