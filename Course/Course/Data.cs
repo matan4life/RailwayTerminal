@@ -26,7 +26,7 @@ namespace Course
 
         private void Data_Load(object sender, EventArgs e)
         {
-            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\RailwayTerminal-temp-1.2\Course\Course\Railroad.mdf;Integrated Security=True";
+            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\DB\Course\Course\Railroad.mdf;Integrated Security=True";
             int enginecount = 0, diesel = 0, electric = 0, cupe = 0, plac = 0, sv = 0, sid = 0, inter1 = 0, inter2 = 0, inter = 0, sov = 0, ukr = 0, an = 0, sov1 = 0, ukr1 = 0, an1 = 0, car = 0;
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {

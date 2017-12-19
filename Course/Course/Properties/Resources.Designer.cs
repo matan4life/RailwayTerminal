@@ -63,6 +63,16 @@ namespace Course.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _0_e7ff7_90be81f9_XXL {
+            get {
+                object obj = ResourceManager.GetObject("0_e7ff7_90be81f9_XXL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _128250 {
             get {
                 object obj = ResourceManager.GetObject("128250", resourceCulture);
@@ -113,9 +123,59 @@ namespace Course.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imgonline_com_ua_Resize_3FFXPhauJbGIZa {
+            get {
+                object obj = ResourceManager.GetObject("imgonline-com-ua-Resize-3FFXPhauJbGIZa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgonline_com_ua_Resize_3PE2vT3Lp8Jxng2J {
+            get {
+                object obj = ResourceManager.GetObject("imgonline-com-ua-Resize-3PE2vT3Lp8Jxng2J", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgonline_com_ua_Resize_dIfNh4CIfM {
+            get {
+                object obj = ResourceManager.GetObject("imgonline-com-ua-Resize-dIfNh4CIfM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imgonline_com_ua_Resize_DMKovnbNFfvr {
             get {
                 object obj = ResourceManager.GetObject("imgonline-com-ua-Resize-DMKovnbNFfvr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgonline_com_ua_Resize_wh2KxmwlLjLN {
+            get {
+                object obj = ResourceManager.GetObject("imgonline-com-ua-Resize-wh2KxmwlLjLN", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgonline_com_ua_Resize_zCQ3YmvTQap {
+            get {
+                object obj = ResourceManager.GetObject("imgonline-com-ua-Resize-zCQ3YmvTQap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

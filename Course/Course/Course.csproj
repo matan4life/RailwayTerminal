@@ -103,6 +103,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pair1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RailroadDataSet.Designer.cs">
@@ -136,6 +137,9 @@
     </Compile>
     <Compile Include="Showing.Designer.cs">
       <DependentUpon>Showing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Showing.Functions_Auto.cs">
+      <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
@@ -242,6 +246,12 @@
     <Content Include="Railroad_log.ldf">
       <DependentUpon>Railroad.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\imgonline-com-ua-Resize-zCQ3YmvTQap.jpg" />
+    <None Include="Resources\imgonline-com-ua-Resize-wh2KxmwlLjLN.jpg" />
+    <None Include="Resources\imgonline-com-ua-Resize-3FFXPhauJbGIZa.jpg" />
+    <None Include="Resources\imgonline-com-ua-Resize-dIfNh4CIfM.jpg" />
+    <None Include="Resources\imgonline-com-ua-Resize-3PE2vT3Lp8Jxng2J.jpg" />
+    <None Include="Resources\0_e7ff7_90be81f9_XXL.jpg" />
     <None Include="Resources\icons8-Microsoft Excel-48.png" />
     <None Include="Resources\icons8-Microsoft Word-48.png" />
     <None Include="Resources\icons8-Поиск-48.png" />

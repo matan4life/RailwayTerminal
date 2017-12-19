@@ -15,7 +15,7 @@ namespace Course
     {
         public int CurrentValue = 0;
         public List<DataGridViewRow> Rows = new List<DataGridViewRow>();
-        public string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\RailwayTerminal-temp-1.2\Course\Course\Railroad.mdf;Integrated Security=True";
+        public string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\DB\Course\Course\Railroad.mdf;Integrated Security=True";
         public Change()
         {
             InitializeComponent();
@@ -60,6 +60,10 @@ namespace Course
         {
             if (radioButton1.Checked)
             {
+                label10.Visible = true;
+                label11.Visible = true;
+                label12.Visible = true;
+                label13.Visible = true;
                 textBox1.Visible = true;
                 listBox1.Visible = true;
                 numericUpDown1.Visible = true;
@@ -68,6 +72,10 @@ namespace Course
             }
             else
             {
+                label10.Visible = false;
+                label11.Visible = false;
+                label12.Visible = false;
+                label13.Visible = false;
                 textBox1.Visible = false;
                 listBox1.Visible = false;
                 numericUpDown1.Visible = false;
@@ -80,6 +88,8 @@ namespace Course
         {
             if (radioButton2.Checked)
             {
+                label14.Visible = true;
+                label15.Visible = true;
                 Generate_Types(listBox2);
                 numericUpDown2.Visible = true;
                 listBox2.Visible = true;
@@ -87,6 +97,8 @@ namespace Course
             }
             else
             {
+                label14.Visible = false;
+                label15.Visible = false;
                 numericUpDown2.Visible = false;
                 listBox2.Visible = false;
                 button2.Visible = false;
@@ -95,8 +107,15 @@ namespace Course
 
         private void button2_Click(object sender, EventArgs e)
         {
-            carriageTableAdapter.InsertQuery(Convert.ToInt32(numericUpDown2.Value), null, null, listBox2.SelectedItem.ToString());
-            CreatePlaces(Convert.ToInt32(numericUpDown2.Value));
+            try
+            {
+                carriageTableAdapter.InsertQuery(Convert.ToInt32(numericUpDown2.Value), null, null, listBox2.SelectedItem.ToString());
+                CreatePlaces(Convert.ToInt32(numericUpDown2.Value));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
         private void CreatePlaces(int id)
         {
@@ -196,6 +215,10 @@ namespace Course
         {
             if (radioButton8.Checked)
             {
+                label16.Visible = true;
+                label17.Visible = true;
+                label18.Visible = true;
+                label19.Visible = true;
                 textBox3.Visible = true;
                 textBox4.Visible = true;
                 numericUpDown3.Visible = true;
@@ -204,6 +227,10 @@ namespace Course
             }
             else
             {
+                label16.Visible = false;
+                label17.Visible = false;
+                label18.Visible = false;
+                label19.Visible = false;
                 textBox3.Visible = false;
                 textBox4.Visible = false;
                 numericUpDown3.Visible = false;
@@ -216,6 +243,8 @@ namespace Course
         {
             if (radioButton4.Checked)
             {
+                label20.Visible = true;
+                label21.Visible = true;
                 Generate_Types_Engines();
                 numericUpDown4.Visible = true;
                 listBox4.Visible = true;
@@ -223,6 +252,8 @@ namespace Course
             }
             else
             {
+                label20.Visible = false;
+                label21.Visible = false;
                 numericUpDown4.Visible = false;
                 listBox4.Visible = false;
                 button4.Visible = false;
@@ -231,18 +262,32 @@ namespace Course
 
         private void button1_Click(object sender, EventArgs e)
         {
-            carriageModelsTableAdapter.InsertQuery(textBox1.Text, listBox1.SelectedItem.ToString(), Convert.ToInt32(numericUpDown1.Value), textBox2.Text);
+            try {
+                carriageModelsTableAdapter.InsertQuery(textBox1.Text, listBox1.SelectedItem.ToString(), Convert.ToInt32(numericUpDown1.Value), textBox2.Text);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
-            engineModelsTableAdapter.InsertQuery(textBox4.Text, listBox3.SelectedItem.ToString(), Convert.ToInt32(numericUpDown3.Value), textBox3.Text);
+            try {
+                engineModelsTableAdapter.InsertQuery(textBox4.Text, listBox3.SelectedItem.ToString(), Convert.ToInt32(numericUpDown3.Value), textBox3.Text);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
-
         private void radioButton6_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton6.Checked)
+
             {
+                label22.Visible = true;
+                label23.Visible = true;
+                label24.Visible = true;
                 button5.Visible = true;
                 numericUpDown5.Visible = true;
                 numericUpDown6.Visible = true;
@@ -250,6 +295,9 @@ namespace Course
             }
             else
             {
+                label22.Visible = false;
+                label23.Visible = false;
+                label24.Visible = false;
                 button5.Visible = false;
                 numericUpDown5.Visible = false;
                 numericUpDown6.Visible = false;
@@ -259,13 +307,26 @@ namespace Course
 
         private void button5_Click(object sender, EventArgs e)
         {
-            stationTableAdapter.InsertQuery(textBox5.Text, Convert.ToInt32(numericUpDown5.Value), Convert.ToInt32(numericUpDown6.Value));
+            try
+            {
+                stationTableAdapter.InsertQuery(textBox5.Text, Convert.ToInt32(numericUpDown5.Value), Convert.ToInt32(numericUpDown6.Value));
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
 
         private void radioButton7_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton7.Checked)
             {
+                label1.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                label4.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
                 listBox5.Visible = true;
                 numericUpDown7.Visible = true;
                 textBox6.Visible = true;
@@ -288,6 +349,12 @@ namespace Course
             }
             else
             {
+                label1.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
                 listBox5.Visible = false;
                 numericUpDown7.Visible = false;
                 textBox6.Visible = false;
@@ -300,7 +367,14 @@ namespace Course
 
         private void button6_Click(object sender, EventArgs e)
         {
-            terminalTableAdapter.InsertQuery(listBox5.SelectedItem.ToString(), textBox6.Text, textBox7.Text, textBox8.Text, Convert.ToInt32(numericUpDown7.Value), textBox9.Text);
+            try
+            {
+                terminalTableAdapter.InsertQuery(listBox5.SelectedItem.ToString(), textBox6.Text, textBox7.Text, textBox8.Text, Convert.ToInt32(numericUpDown7.Value), textBox9.Text);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
         private void Generate_Train()
         {
@@ -365,9 +439,11 @@ namespace Course
         {
             if (radioButton3.Checked)
             {
+                label7.Visible = true;
+                label8.Visible = true;
+                label9.Visible = true;
                 FillEngine("SELECT e.EngineId, e.Type, em.Type, em.Propulsion FROM Engine e, EngineModels em WHERE e.Type=em.Name");
                 FillDGV("SELECT c.CarId, cm.Name, cm.Type, cm.NumberOfPlaces FROM Carriage c, CarriageModels cm WHERE c.Type=cm.Name");
-                MessageBox.Show(dataGridView2.Rows[0].Cells[3].Value.ToString());
                 Generate_Train();
                 dataGridView2.Visible = true;
                 numericUpDown10.Visible = true;
@@ -382,10 +458,12 @@ namespace Course
                 checkBox2.Visible = true;
                 checkBox3.Visible = true;
                 checkBox4.Visible = true;
-                numericUpDown9.Visible = true;
             }
             else
             {
+                label7.Visible = false;
+                label8.Visible = false;
+                label9.Visible = false;
                 numericUpDown10.Visible = false;
                 checkBox1.Visible = false;
                 checkBox2.Visible = false;
@@ -410,7 +488,14 @@ namespace Course
 
         private void button4_Click(object sender, EventArgs e)
         {
-            engineTableAdapter.InsertQuery(Convert.ToInt32(numericUpDown4.Value), listBox4.SelectedItem.ToString());
+            try
+            {
+                engineTableAdapter.InsertQuery(Convert.ToInt32(numericUpDown4.Value), listBox4.SelectedItem.ToString());
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
         private void FilterCarType(string type)
         {
@@ -425,6 +510,7 @@ namespace Course
             else
             {
                 comboBox1.Visible = false;
+                Rows.Clear();
             }
         }
 
@@ -504,6 +590,7 @@ namespace Course
             else
             {
                 comboBox2.Visible = false;
+                Rows.Clear();
             }
         }
                private void checkBox3_CheckedChanged(object sender, EventArgs e)
@@ -515,6 +602,7 @@ namespace Course
             }
             else
             {
+                Rows.Clear();
                 comboBox3.Visible = false;
                 numericUpDown8.Visible = false;
             }
@@ -603,34 +691,48 @@ namespace Course
 
         private void button8_Click(object sender, EventArgs e)
         {
-            trainTableAdapter.InsertQuery(Convert.ToInt32(numericUpDown10.Value), Convert.ToInt32(listBox6.SelectedItem));
+            try
+            {
+                trainTableAdapter.InsertQuery(Convert.ToInt32(numericUpDown10.Value), Convert.ToInt32(listBox6.SelectedItem));
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            int c = 0;
-            string type = "";
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            try
             {
-                connection.Open();
-                string sql = "SELECT COUNT(CarId) FROM Carriage WHERE TrainId=" + numericUpDown10.Value.ToString();
-                SqlCommand command = new SqlCommand(sql, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                int c = 0;
+                string type = "";
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
-                    c = reader.GetInt32(0);
+                    connection.Open();
+                    string sql = "SELECT COUNT(CarId) FROM Carriage WHERE TrainId=" + numericUpDown10.Value.ToString();
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        c = reader.GetInt32(0);
+                    }
+                    reader.Close();
+                    sql = "SELECT Type FROM Carriage WHERE CarId=" + listBox7.SelectedItem.ToString();
+                    command = new SqlCommand(sql, connection);
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        type = reader.GetString(0);
+                    }
+                    connection.Close();
                 }
-                reader.Close();
-                sql = "SELECT Type FROM Carriage WHERE CarId=" + listBox7.SelectedItem.ToString();
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    type = reader.GetString(0);
-                }
-                connection.Close();
+                carriageTableAdapter.UpdateQuery(Convert.ToInt32(listBox7.SelectedItem), Convert.ToInt32(numericUpDown10.Value), c + 1, type, Convert.ToInt32(listBox7.SelectedItem));
             }
-            carriageTableAdapter.UpdateQuery(Convert.ToInt32(listBox7.SelectedItem), Convert.ToInt32(numericUpDown10.Value), c + 1, type, Convert.ToInt32(listBox7.SelectedItem));
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Ошибббочка");
+            }
         }
     private bool IsSorted(DataGridViewColumn dgv)
     {
@@ -676,6 +778,24 @@ namespace Course
             engineTableAdapter.Update(railroadDataSet2);
             engineModelsTableAdapter.Update(railroadDataSet2);
             terminalTableAdapter.Update(railroadDataSet2);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox4.Checked)
+            {
+                numericUpDown9.Visible = true;
+            }
+            else
+            {
+                Rows.Clear();
+                numericUpDown9.Visible = false;
+            }
         }
     }
 }
