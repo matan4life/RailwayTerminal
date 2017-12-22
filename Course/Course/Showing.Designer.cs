@@ -43,6 +43,10 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.railroadDataSet1)).BeginInit();
@@ -51,6 +55,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.главнаяToolStripMenuItem,
             this.пассажирамToolStripMenuItem,
@@ -65,7 +70,7 @@
             // главнаяToolStripMenuItem
             // 
             this.главнаяToolStripMenuItem.Name = "главнаяToolStripMenuItem";
-            this.главнаяToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.главнаяToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.главнаяToolStripMenuItem.Text = "Главная";
             // 
             // пассажирамToolStripMenuItem
@@ -74,19 +79,19 @@
             this.расписаниеПоездовToolStripMenuItem,
             this.оплатаБилетовOnlineToolStripMenuItem});
             this.пассажирамToolStripMenuItem.Name = "пассажирамToolStripMenuItem";
-            this.пассажирамToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.пассажирамToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.пассажирамToolStripMenuItem.Text = "Пассажирам";
             // 
             // расписаниеПоездовToolStripMenuItem
             // 
             this.расписаниеПоездовToolStripMenuItem.Name = "расписаниеПоездовToolStripMenuItem";
-            this.расписаниеПоездовToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.расписаниеПоездовToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.расписаниеПоездовToolStripMenuItem.Text = "Расписание поездов";
             // 
             // оплатаБилетовOnlineToolStripMenuItem
             // 
             this.оплатаБилетовOnlineToolStripMenuItem.Name = "оплатаБилетовOnlineToolStripMenuItem";
-            this.оплатаБилетовOnlineToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.оплатаБилетовOnlineToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.оплатаБилетовOnlineToolStripMenuItem.Text = "Оплата билетов Online";
             // 
             // администраторамToolStripMenuItem
@@ -94,7 +99,7 @@
             this.администраторамToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.входToolStripMenuItem});
             this.администраторамToolStripMenuItem.Name = "администраторамToolStripMenuItem";
-            this.администраторамToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.администраторамToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
             this.администраторамToolStripMenuItem.Text = "Администраторам";
             // 
             // входToolStripMenuItem
@@ -107,7 +112,7 @@
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.выходToolStripMenuItem.Text = "Выход";
             // 
             // railroadDataSet1
@@ -160,14 +165,66 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(141)))), ((int)(((byte)(54)))));
+            this.label1.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(756, 108);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 22);
+            this.label1.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(148, 369);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(365, 22);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Выберите начальный и конечный пункт";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Харьков-Пассажирский",
+            "Киев-Пассажирский",
+            "Львов-Главный",
+            "Кировоград",
+            "Одесса-Главная"});
+            this.comboBox1.Location = new System.Drawing.Point(143, 403);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(232, 30);
+            this.comboBox1.TabIndex = 6;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Харьков-Пассажирский",
+            "Киев-Пассажирский",
+            "Львов-Главный",
+            "Кировоград",
+            "Одесса-Главная"});
+            this.comboBox2.Location = new System.Drawing.Point(381, 403);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(232, 30);
+            this.comboBox2.TabIndex = 7;
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Play", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(140, 319);
+            this.button1.Image = global::Course.Properties.Resources.icons8_train_64;
+            this.button1.Location = new System.Drawing.Point(347, 464);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(543, 52);
+            this.button1.Size = new System.Drawing.Size(64, 64);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Задача автоматизации (АЛЬФА-ТЕСТ)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -176,6 +233,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
@@ -209,5 +270,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

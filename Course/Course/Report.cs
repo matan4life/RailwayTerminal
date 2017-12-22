@@ -21,14 +21,14 @@ namespace Course
         {
             InitializeComponent();
         }
-        private const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\DB\Course\Course\Railroad.mdf;Integrated Security=True";
+        private const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\GIGABYTE\RailwayTerminal\Course\Course\Railroad.mdf;Integrated Security=True";
         //TODO:: создать пустой файл, сохранить его, и путь к нему в переменную sample_doc
         private const string sample_doc = @"C:\Users\Владелец\Desktop\DB\Course\Course\bin\Debug\sample.docx";
 
         
         private void button1_Click(object sender, EventArgs e)
         {
-            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\DB\Course\Course\Railroad.mdf;Integrated Security=True";
+            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\GIGABYTE\RailwayTerminal\Course\Course\Railroad.mdf;Integrated Security=True";
             int year = DateTime.Now.Year;
             int quarter = DateTime.Now.Month / 3+1;
             int enginecount = 0, diesel=0, electric=0, cupe=0, plac=0, sv=0, sid=0, inter1=0, inter2=0, inter=0, sov=0, ukr=0, an=0, sov1=0, ukr1=0, an1=0, car=0;
@@ -206,138 +206,55 @@ namespace Course
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\DB\Course\Course\Railroad.mdf;Integrated Security=True";
-            int year = DateTime.Now.Year;
-            int quarter = DateTime.Now.Month / 3 + 1;
-            int enginecount = 0, diesel = 0, electric = 0, cupe = 0, plac = 0, sv = 0, sid = 0, inter1 = 0, inter2 = 0, inter = 0, sov = 0, ukr = 0, an = 0, sov1 = 0, ukr1 = 0, an1 = 0, car = 0;
-            using (SqlConnection connection = new SqlConnection(connectionstring))
+            string[] replace = { "{total}", "{tc}", "{tp}", "{inter}", "{ic}", "{ip}", "{rapid}", "{rc}", "{rp}", "{other}", "{oc}", "{op}" };
+            string[] replacement = { "Всего поездов", "0", "100%", "Поездов Интерсити", "0", "0", "Скорых поездов", "0", "0", "Обычных поездов", "0", "0" };
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 connection.Open();
-                string sql = "SELECT COUNT(EngineId) FROM Engine";
+                string sql = "select count(TrainId) from train";
                 SqlCommand command = new SqlCommand(sql, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    enginecount = reader.GetInt32(0);
+                    replacement[1] = reader.GetInt32(0).ToString();
                 }
                 reader.Close();
-                sql = "SELECT COUNT(EngineId) FROM Engine, EngineModels WHERE Engine.Type=EngineModels.Name AND EngineModels.Type IN (N'Тепловоз')";
+                sql = "select count(trainid) from train where engineid in(select engineid from engine where type in (select name from enginemodels where type in(" + "N'Интерсити'" + ")))";
                 command = new SqlCommand(sql, connection);
                 reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    diesel = reader.GetInt32(0);
+                    replacement[4] = reader.GetInt32(0).ToString();
+                    replacement[5] = (reader.GetInt32(0) * 100 / Convert.ToInt32(replacement[1])).ToString();
                 }
                 reader.Close();
-                sql = "SELECT COUNT(EngineId) FROM Engine, EngineModels WHERE Engine.Type=EngineModels.Name AND EngineModels.Type IN (N'Электровоз')";
+                sql = "select count(trainid) from train where trainid in(" +
+                    "select trainid from trainstations group by trainid having count(stationid)<6" +
+                    ") and engineid not in (" +
+                    "select engineid from engine where type in(" +
+                    "select name from enginemodels where type in (N'Интерсити')" +
+                    ")" +
+                    ")";
                 command = new SqlCommand(sql, connection);
                 reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    electric = reader.GetInt32(0);
+                    replacement[7] = reader.GetInt32(0).ToString();
+                    replacement[8] = (reader.GetInt32(0) * 100 / Convert.ToInt32(replacement[1])).ToString();
                 }
                 reader.Close();
-                sql = "SELECT COUNT(EngineId) FROM Engine, EngineModels WHERE Engine.Type=EngineModels.Name AND EngineModels.Type IN (N'Интерсити')";
+                sql = "select count(trainid) from train where trainid in(" +
+                    "select trainid from trainstations group by trainid having count(stationid)>=6" +
+                    ")";
                 command = new SqlCommand(sql, connection);
                 reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    inter = reader.GetInt32(0);
+                    replacement[10] = reader.GetInt32(0).ToString();
+                    replacement[11] = (reader.GetInt32(0) * 100 / Convert.ToInt32(replacement[1])).ToString();
                 }
-                reader.Close();
-                sql = "SELECT COUNT(EngineId) FROM Engine WHERE Type IN ('EJ 675', 'HRCS2', N'ЧС4', N'ЧС4Т', N'ЧС8')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    an = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(EngineId) FROM Engine WHERE Type IN (N'ДС3', N'ЭКр1')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    ukr = reader.GetInt32(0);
-                }
-                reader.Close();
-                sov = enginecount - an - ukr;
-                sql = "SELECT COUNT(CarId) FROM Carriage";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    car = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage, CarriageModels WHERE Carriage.Type=CarriageModels.Name AND CarriageModels.Type IN (N'Купейный')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    cupe = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage, CarriageModels WHERE Carriage.Type=CarriageModels.Name AND CarriageModels.Type IN (N'Плацкартный')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    plac = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage, CarriageModels WHERE Carriage.Type=CarriageModels.Name AND CarriageModels.Type IN (N'СВ')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    sv = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage, CarriageModels WHERE Carriage.Type=CarriageModels.Name AND CarriageModels.Type IN (N'Сидячий 2 класса')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    sid = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage, CarriageModels WHERE Carriage.Type=CarriageModels.Name AND CarriageModels.Type IN (N'Интерсити 1 класса')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    inter1 = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage, CarriageModels WHERE Carriage.Type=CarriageModels.Name AND CarriageModels.Type IN (N'Интерсити 2 класса')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    inter2 = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage WHERE Type IN (N'47-К', N'47-К2', 'EJ-675-1', 'EJ-675-2', 'HRCS2-1', 'HRCS2-2')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    an1 = reader.GetInt32(0);
-                }
-                reader.Close();
-                sql = "SELECT COUNT(CarId) FROM Carriage WHERE Type IN ('61-4174', '61-4186', '61-4194')";
-                command = new SqlCommand(sql, connection);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    sov1 = reader.GetInt32(0);
-                }
-                reader.Close();
-                string[] replace = { "{q}", "{y}", "{all}", "{allc}", "{dc}", "{dp}", "{cc}", "{cp}", "{sidc}", "{sidp}", "{ec}", "{ep}", "{pc}", "{pp}", "{ic1}", "{ip1}", "{ic}", "{ip}", "{svc}", "{svp}", "{ic2}", "{ip2}", "{sc}", "{sp}", "{sc1}", "{sp1}", "{uc}", "{up}", "{uc1}", "{up1}", "{ac}", "{ap}", "{ac1}", "{ap1}" };
-                string[] replacement = { quarter.ToString()+" квартал", year.ToString()+" года", enginecount.ToString(), car.ToString(), diesel.ToString(), (diesel*100/enginecount).ToString()+"%", cupe.ToString(), (cupe*100/car).ToString()+"%", sid.ToString(), (sid*100/car).ToString()+"%", electric.ToString(), (electric*100/enginecount).ToString()+"%", plac.ToString(), (plac*100/car).ToString()+"%", inter1.ToString(), (inter1*100/car).ToString()+"%", inter.ToString(), (inter*100/enginecount).ToString()+"%", sv.ToString(), (sv*100/car).ToString()+"%", inter2.ToString(), (inter2*100/car).ToString()+"%", sov.ToString(), (sov*100/enginecount).ToString()+"%", sov1.ToString(), (sov1*100/car).ToString()+"%", ukr.ToString(), (ukr*100/enginecount).ToString()+"%", ukr1.ToString(), (ukr1*100/car).ToString()+"%", an.ToString(), (an*100/enginecount).ToString()+"%", an1.ToString(), (an1*100/car).ToString()+"%"};
-                ReplaceTextInExcelFile(@"D:\report.xlsx", replace, replacement);
             }
+            ReplaceTextInExcelFile(@"D:\report.xlsx", replace, replacement);
         }
         public static void ReplaceTextInExcelFile(string filename, string[] replace, string[] replacement)
         {

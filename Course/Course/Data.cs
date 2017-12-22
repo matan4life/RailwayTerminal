@@ -14,6 +14,7 @@ namespace Course
 {
     public partial class Data : Form
     {
+        public string connectionString= @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\GIGABYTE\RailwayTerminal\Course\Course\Railroad.mdf;Integrated Security=True";
         public Data()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace Course
 
         private void Data_Load(object sender, EventArgs e)
         {
-            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\DB\Course\Course\Railroad.mdf;Integrated Security=True";
+            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\GIGABYTE\RailwayTerminal\Course\Course\Railroad.mdf;Integrated Security=True";
             int enginecount = 0, diesel = 0, electric = 0, cupe = 0, plac = 0, sv = 0, sid = 0, inter1 = 0, inter2 = 0, inter = 0, sov = 0, ukr = 0, an = 0, sov1 = 0, ukr1 = 0, an1 = 0, car = 0;
             using (SqlConnection connection = new SqlConnection(connectionstring))
             {
@@ -318,6 +319,125 @@ namespace Course
                 chart4.Series[0].Points[i].LegendText = xValues1[i];
             }
             chart4.ChartAreas[0].Area3DStyle.Enable3D = true;
+        }
+        private void StatPart2()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = "select count(TrainId) from train";
+                SqlCommand command = new SqlCommand(sql, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                dataGridView4.Rows.Add();
+                while (reader.Read())
+                {
+                    dataGridView4.Rows[0].Cells[0].Value = "Всего поездов";
+                    dataGridView4.Rows[0].Cells[1].Value = reader.GetInt32(0).ToString();
+                    dataGridView4.Rows[0].Cells[2].Value = "100%";
+                }
+                reader.Close();
+                sql = "select count(trainid) from train where engineid in(select engineid from engine where type in (select name from enginemodels where type in(" + "N'Интерсити'" + ")))";
+                command = new SqlCommand(sql, connection);
+                reader = command.ExecuteReader();
+                dataGridView4.Rows.Add();
+                while (reader.Read())
+                {
+                    dataGridView4.Rows[1].Cells[0].Value = "Поездов Интерсити";
+                    dataGridView4.Rows[1].Cells[1].Value = reader.GetInt32(0).ToString();
+                    dataGridView4.Rows[1].Cells[2].Value = (reader.GetInt32(0)*100/ Convert.ToInt32(dataGridView4.Rows[0].Cells[1].Value)).ToString()+"%";
+                }
+                reader.Close();
+                sql = "select count(trainid) from train where trainid in(" +
+                    "select trainid from trainstations group by trainid having count(stationid)<6" +
+                    ") and engineid not in (" +
+                    "select engineid from engine where type in(" +
+                    "select name from enginemodels where type in (N'Интерсити')" +
+                    ")" +
+                    ")";
+                command = new SqlCommand(sql, connection);
+                reader = command.ExecuteReader();
+                dataGridView4.Rows.Add();
+                while (reader.Read())
+                {
+                    dataGridView4.Rows[2].Cells[0].Value = "Скорых поездов";
+                    dataGridView4.Rows[2].Cells[1].Value = reader.GetInt32(0).ToString();
+                    dataGridView4.Rows[2].Cells[2].Value = (reader.GetInt32(0) * 100 / Convert.ToInt32(dataGridView4.Rows[0].Cells[1].Value)).ToString() + "%";
+                }
+                reader.Close();
+                sql = "select count(trainid) from train where trainid in(" +
+                    "select trainid from trainstations group by trainid having count(stationid)>=6" +
+                    ")";
+                command = new SqlCommand(sql, connection);
+                reader = command.ExecuteReader();
+                dataGridView4.Rows.Add();
+                while (reader.Read())
+                {
+                    dataGridView4.Rows[3].Cells[0].Value = "Обычных поездов";
+                    dataGridView4.Rows[3].Cells[1].Value = reader.GetInt32(0).ToString();
+                    dataGridView4.Rows[3].Cells[2].Value = (reader.GetInt32(0) * 100 / Convert.ToInt32(dataGridView4.Rows[0].Cells[1].Value)).ToString() + "%";
+                }
+            }
+            chart8.Series.Clear();
+            chart8.BackColor = Color.Gray;
+            chart8.BackSecondaryColor = Color.WhiteSmoke;
+            chart8.BackGradientStyle = GradientStyle.DiagonalRight;
+
+            chart8.BorderlineDashStyle = ChartDashStyle.Solid;
+            chart8.BorderlineColor = Color.Gray;
+            chart8.BorderSkin.SkinStyle = BorderSkinStyle.Emboss;
+
+            // Форматировать область диаграммы
+            chart8.ChartAreas[0].BackColor = Color.Wheat;
+            chart8.Titles.Add("Поезда Украинской железной дороги");
+            chart8.Titles[0].Font = new Font("Utopia", 16);
+
+            chart8.Series.Add(new Series("ColumnSeries")
+            {
+                ChartType = SeriesChartType.Pie
+            });
+            int[] yValues = { Convert.ToInt32(dataGridView4.Rows[1].Cells[1].Value), Convert.ToInt32(dataGridView4.Rows[2].Cells[1].Value), Convert.ToInt32(dataGridView4.Rows[3].Cells[1].Value) };
+            string[] xValues = { "Поезда Интерсити", "Скорые поезда", "Обычные поезда" };
+            chart8.Series["ColumnSeries"].Points.DataBindXY(xValues, yValues);
+            for (int i = 0; i < xValues.Length; i++)
+            {
+                chart8.Series["ColumnSeries"].Points[i].AxisLabel = "";
+                chart8.Series[0].Points[i].LegendText = xValues[i];
+            }
+            chart8.ChartAreas[0].Area3DStyle.Enable3D = true;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            label5.Visible = true;
+            dataGridView4.Visible = true;
+            chart8.Visible = true;
+            label2.Visible = false;
+            label3.Visible = false;
+            dataGridView1.Visible = false;
+            dataGridView2.Visible = false;
+            chart1.Visible = false;
+            chart2.Visible = false;
+            chart3.Visible = false;
+            chart4.Visible = false;
+            button1.Visible = false;
+            button2.Visible = true;
+            StatPart2();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            label2.Visible = true;
+            label3.Visible = true;
+            dataGridView1.Visible = true;
+            dataGridView2.Visible = true;
+            chart1.Visible = true;
+            chart2.Visible = true;
+            chart3.Visible = true;
+            chart4.Visible = true;
+            label5.Visible = false;
+            dataGridView4.Visible = false;
+            chart8.Visible = false;
+            button2.Visible = false;
+            button1.Visible = true;
         }
     }
 }

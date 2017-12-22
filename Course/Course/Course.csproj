@@ -246,6 +246,11 @@
     <Content Include="Railroad_log.ldf">
       <DependentUpon>Railroad.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\icons8-railway-station-filled-50.png" />
+    <None Include="Resources\icons8-high-speed-train-filled-50.png" />
+    <None Include="Resources\icons8-railcar-filled-50.png" />
+    <None Include="Resources\icons8-steam-engine-48.png" />
+    <None Include="Resources\icons8-train-64.png" />
     <None Include="Resources\imgonline-com-ua-Resize-zCQ3YmvTQap.jpg" />
     <None Include="Resources\imgonline-com-ua-Resize-wh2KxmwlLjLN.jpg" />
     <None Include="Resources\imgonline-com-ua-Resize-3FFXPhauJbGIZa.jpg" />

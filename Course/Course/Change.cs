@@ -15,7 +15,7 @@ namespace Course
     {
         public int CurrentValue = 0;
         public List<DataGridViewRow> Rows = new List<DataGridViewRow>();
-        public string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Владелец\Desktop\DB\Course\Course\Railroad.mdf;Integrated Security=True";
+        public string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\GIGABYTE\RailwayTerminal\Course\Course\Railroad.mdf;Integrated Security=True";
         public Change()
         {
             InitializeComponent();
@@ -69,6 +69,7 @@ namespace Course
                 numericUpDown1.Visible = true;
                 textBox2.Visible = true;
                 button1.Visible = true;
+                carriageDataGridView.DataSource = carriageModelsBindingSource;
             }
             else
             {
@@ -94,6 +95,7 @@ namespace Course
                 numericUpDown2.Visible = true;
                 listBox2.Visible = true;
                 button2.Visible = true;
+                carriageDataGridView.DataSource = carriageBindingSource;
             }
             else
             {
@@ -180,8 +182,28 @@ namespace Course
 
         private void Change_Load(object sender, EventArgs e)
         {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.TrainStations". При необходимости она может быть перемещена или удалена.
+            this.trainStationsTableAdapter.Fill(this.railroadDataSet2.TrainStations);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Train". При необходимости она может быть перемещена или удалена.
+            this.trainTableAdapter.Fill(this.railroadDataSet2.Train);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Ticket". При необходимости она может быть перемещена или удалена.
+            this.ticketTableAdapter.Fill(this.railroadDataSet2.Ticket);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Terminal". При необходимости она может быть перемещена или удалена.
+            this.terminalTableAdapter.Fill(this.railroadDataSet2.Terminal);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Station". При необходимости она может быть перемещена или удалена.
+            this.stationTableAdapter.Fill(this.railroadDataSet2.Station);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Place". При необходимости она может быть перемещена или удалена.
+            this.placeTableAdapter.Fill(this.railroadDataSet2.Place);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.EngineModels". При необходимости она может быть перемещена или удалена.
+            this.engineModelsTableAdapter.Fill(this.railroadDataSet2.EngineModels);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Engine". При необходимости она может быть перемещена или удалена.
+            this.engineTableAdapter.Fill(this.railroadDataSet2.Engine);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.CarriageModels". При необходимости она может быть перемещена или удалена.
+            this.carriageModelsTableAdapter.Fill(this.railroadDataSet2.CarriageModels);
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Carriage". При необходимости она может быть перемещена или удалена.
+            this.carriageTableAdapter.Fill(this.railroadDataSet2.Carriage);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet21.Train". При необходимости она может быть перемещена или удалена.
-            this.trainTableAdapter.Fill(this.railroadDataSet21.Train);
+            this.trainTableAdapter.Fill(this.railroadDataSet2.Train);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Terminal". При необходимости она может быть перемещена или удалена.
             this.terminalTableAdapter.Fill(this.railroadDataSet2.Terminal);
             // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.Station". При необходимости она может быть перемещена или удалена.
@@ -198,7 +220,7 @@ namespace Course
             // TODO: данная строка кода позволяет загрузить данные в таблицу "railroadDataSet2.CarriageModels". При необходимости она может быть перемещена или удалена.
             this.carriageModelsTableAdapter.Fill(this.railroadDataSet2.CarriageModels);
             dataGridView1.AutoGenerateColumns = true;
-
+            carriageDataGridView.AutoGenerateColumns = true;
         }
 
         private void Change_FormClosing(object sender, FormClosingEventArgs e)
@@ -224,6 +246,7 @@ namespace Course
                 numericUpDown3.Visible = true;
                 listBox3.Visible = true;
                 button3.Visible = true;
+                carriageDataGridView.DataSource = engineModelsBindingSource;
             }
             else
             {
@@ -249,6 +272,7 @@ namespace Course
                 numericUpDown4.Visible = true;
                 listBox4.Visible = true;
                 button4.Visible = true;
+                carriageDataGridView.DataSource = engineBindingSource;
             }
             else
             {
@@ -292,6 +316,7 @@ namespace Course
                 numericUpDown5.Visible = true;
                 numericUpDown6.Visible = true;
                 textBox5.Visible = true;
+                carriageDataGridView.DataSource = stationBindingSource;
             }
             else
             {
@@ -346,6 +371,7 @@ namespace Course
                     }
                     connection.Close();
                 }
+                carriageDataGridView.DataSource = terminalBindingSource;
             }
             else
             {
@@ -458,6 +484,7 @@ namespace Course
                 checkBox2.Visible = true;
                 checkBox3.Visible = true;
                 checkBox4.Visible = true;
+                carriageDataGridView.Visible = false;
             }
             else
             {
@@ -478,6 +505,7 @@ namespace Course
                 button10.Visible = false;
                 numericUpDown9.Visible = false;
                 checkBox4.Visible = false;
+                carriageDataGridView.Visible = true;
             }
         }
 
@@ -796,6 +824,79 @@ namespace Course
                 Rows.Clear();
                 numericUpDown9.Visible = false;
             }
+        }
+
+        private void редактированиеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var edit = new Edit();
+            edit.ShowDialog();
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton5.Checked)
+            {
+                label25.Visible = true;
+                label26.Visible = true;
+                label27.Visible = true;
+                label28.Visible = true;
+                label29.Visible = true;
+                label30.Visible = true;
+                listBox8.Visible = true;
+                listBox9.Visible = true;
+                numericUpDown11.Visible = true;
+                numericUpDown12.Visible = true;
+                numericUpDown13.Visible = true;
+                dateTimePicker1.Visible = true;
+                button11.Visible = true;
+                using (SqlConnection connection=new SqlConnection(ConnectionString))
+                {
+                    connection.Open();
+                    string sql = "select TrainId from Train";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        listBox8.Items.Add(reader.GetInt32(0).ToString());
+                    }
+                    reader.Close();
+                    sql = "select StationName from Station";
+                    command = new SqlCommand(sql, connection);
+                    reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        listBox9.Items.Add(reader.GetString(0));
+                    }
+                }
+                    carriageDataGridView.DataSource = trainStationsBindingSource;
+            }
+            else
+            {
+                label25.Visible = false;
+                label26.Visible = false;
+                label27.Visible = false;
+                label28.Visible = false;
+                label29.Visible = false;
+                label30.Visible = false;
+                listBox8.Visible = false;
+                listBox9.Visible = false;
+                numericUpDown11.Visible = false;
+                numericUpDown12.Visible = false;
+                numericUpDown13.Visible = false;
+                dateTimePicker1.Visible = false;
+                button11.Visible = false;
+            }
+        }
+
+        private void редактированиеToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            var edit = new Edit();
+            edit.ShowDialog();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
